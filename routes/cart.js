@@ -5,7 +5,7 @@ const User = require('../models/User');
 const Product = require('../models/Product');
 
 
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
+router.post("/",verifyToken,async (req, res) => {
     const newProduct = new Product(req.body);
     try {
         const savedProduct = await newProduct.save();
@@ -14,20 +14,20 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(err);
     }
 });
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-    try {
-        const updatedProduct = await Product.findByIdAndUpdate(
-            req.params.id,
-            {
-                $set: req.body,
-            },
-            { new: true }
-        );
-        res.status(200).json(updatedProduct);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+// router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+//     try {
+//         const updatedProduct = await Product.findByIdAndUpdate(
+//             req.params.id,
+//             {
+//                 $set: req.body,
+//             },
+//             { new: true }
+//         );
+//         res.status(200).json(updatedProduct);
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);
