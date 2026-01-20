@@ -9,8 +9,8 @@ const CartSchema = new mongoose.Schema(
                 quantity: { type: Number, required: true, default: 1 },
             },
         ],
-        totalAmount: { type: Number, required: true, default: 0 },
-        address: { type: Object, required: true },
+        totalAmount: { type: Number, default: 0 },
+        address: { type: Object }, // Make address optional
     },
     { timestamps: true }
 );

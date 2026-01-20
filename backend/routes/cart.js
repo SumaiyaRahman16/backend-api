@@ -5,16 +5,20 @@ const User = require('../models/User');
 const Cart = require('../models/Cart');
 
 
-router.post("/",verifyToken,async (req, res) => {
+// CREATE CART
+router.post("/", verifyToken, async (req, res) => {
     const newCart = new Cart(req.body);
     try {
         const savedCart = await newCart.save();
         res.status(201).json(savedCart);
     } catch (err) {
-        res.status(500).json(err);
+        console.error("Create cart error:", err);
+        res.status(500).json({ message: "Failed to create cart", error: err.message });
     }
 });
-router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+
+// UPDATE CART
+router.put("/:id", verifyToken, async (req, res) => {
     try {
         const updatedCart = await Cart.findByIdAndUpdate(
             req.params.id,
@@ -25,25 +29,47 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
         );
         res.status(200).json(updatedCart);
     } catch (err) {
-        res.status(500).json(err);
+        console.error("Update cart error:", err);
+        res.status(500).json({ message: "Failed to update cart", error: err.message });
     }
 });
-router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+
+// DELETE CART
+router.delete("/:id", verifyToken, async (req, res) => {
     try {
         await Cart.findByIdAndDelete(req.params.id);
         res.status(200).json("Cart has been deleted...");
     } catch (err) {
-        res.status(500).json(err);
+        console.error("Delete cart error:", err);
+        res.status(500).json({ message: "Failed to delete cart", error: err.message });
     }
 });
 
-
-router.get("/find/:userid", verifyTokenAndAuthorization, async (req, res) => {
+// GET USER'S CART (Main route for frontend)
+router.get("/:userid", verifyToken, async (req, res) => {
     try {
-        const Cart = await Cart.findOne({ userId: req.params.userid });
-        res.status(200).json(Cart);
+        const cart = await Cart.findOne({ userId: req.params.userid });
+        if (!cart) {
+            return res.status(404).json({ message: "Cart not found" });
+        }
+        res.status(200).json(cart);
     } catch (err) {
-        res.status(500).json(err);
+        console.error("Get cart error:", err);
+        res.status(500).json({ message: "Failed to get cart", error: err.message });
+    }
+});
+
+// Alternative route (for backward compatibility)
+router.get("/find/:userid", verifyToken, async (req, res) => {
+    try {
+        const cart = await Cart.findOne({ userId: req.params.userid });
+        if (!cart) {
+            return res.status(404).json({ message: "Cart not found" });
+        }
+        res.status(200).json(cart);
+    } catch (err) {
+        console.error("Find cart error:", err);
+        res.status(500).json({ message: "Failed to find cart", error: err.message });
     }
 });
 

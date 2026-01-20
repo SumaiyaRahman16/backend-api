@@ -1,0 +1,398 @@
+{
+  "info": {
+    "_postman_id": "cf5a1e4c-c844-4574-9dfa-2d7690523055",
+    "name": "sumu",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46705236"
+  },
+  "item": [
+    {
+      "name": "shop",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "LOGIN",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"taraaa\",\n     \"email\":\"tara1602@gmail.com\",\n     \"password\":\"chup\"\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REGISTER",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET USER",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET ALL USER",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET ALL USER STATE",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET PRODUCT",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ADD PRODUCT",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ADD USER",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET INCOME",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "token",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmUwZDdlYjI5NjE4ZmE5MGFiYzNiZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc2ODgyMDE5OSwiZXhwIjoxNzY5MDc5Mzk5fQ.6ba_iGUM6eT4-x8M-GSpBmREAUteRxHHSBwSCMtCcwk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin987\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/user/find/696e0d7eb29618fa90abc3bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "user",
+            "find",
+            "696e0d7eb29618fa90abc3bf"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
