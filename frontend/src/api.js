@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Base API configuration
 const API = axios.create({
-  baseURL: 'http://localhost:3001/api', // Your backend server URL
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001/api', // Your backend server URL
 });
 
 // Add request interceptor to include token in headers
