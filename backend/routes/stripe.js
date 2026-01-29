@@ -6,20 +6,45 @@ if (process.env.STRIPE_KEY) {
     const Stripe = require("stripe");
     const stripe = Stripe(process.env.STRIPE_KEY);
     
+    // router.post("/payment", async (req, res) => {
+    //   try {
+    //     const charge = await stripe.charges.create({
+    //       amount: req.body.amount,
+    //       currency: "usd",
+    //       source: req.body.token.id,
+    //       description: "Test payment from e-commerce app",
+    //     });
+    //     res.status(200).json(charge);
+    //   } catch (stripeErr) {
+    //     console.error("Stripe Error:", stripeErr);
+    //     res.status(500).json({ error: "Payment processing failed", details: stripeErr });
+    //   }
+    // });
     router.post("/payment", async (req, res) => {
-      try {
-        const charge = await stripe.charges.create({
-          amount: req.body.amount,
-          currency: "usd",
-          source: req.body.token.id,
-          description: "Test payment from e-commerce app",
-        });
-        res.status(200).json(charge);
-      } catch (stripeErr) {
-        console.error("Stripe Error:", stripeErr);
-        res.status(500).json({ error: "Payment processing failed", details: stripeErr });
+  try {
+    const charge = await stripe.charges.create({
+      amount: req.body.amount,
+      currency: "usd",
+      source: req.body.token.id,
+      // We update the description to reflect the digital asset
+      description: `Purchase of DevSnippet: ${req.body.title || 'Code Asset'}`,
+      // Metadata is key! It helps you track which user bought what in your Stripe Dashboard
+      metadata: {
+        snippet_id: req.body.productId,
+        user_id: req.body.userId,
+        is_digital: "true"
       }
     });
+    
+    // In a real SaaS, here is where you would update your MongoDB User 
+    // to give them access to the code.
+    
+    res.status(200).json(charge);
+  } catch (stripeErr) {
+    console.error("Stripe Error:", stripeErr);
+    res.status(500).json({ error: "Payment processing failed", details: stripeErr });
+  }
+});
   } catch (error) {
     console.error("Error initializing Stripe:", error);
     

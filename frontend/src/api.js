@@ -3,6 +3,7 @@ import axios from 'axios';
 // Base API configuration
 const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001/api', // Your backend server URL
+      // baseURL: 'http://localhost:3001/api', // Your backend server URL
 });
 
 // Add request interceptor to include token in headers
@@ -32,7 +33,7 @@ export const userAPI = {
 // Product API calls
 export const productAPI = {
   getAllProducts: () => API.get('/products'),
-  getProduct: (productId) => API.get(`/products/${productId}`),
+  getProduct: (productId) => API.get(`/products/find/${productId}`),
   createProduct: (productData) => API.post('/products', productData),
   updateProduct: (productId, productData) => API.put(`/products/${productId}`, productData),
   deleteProduct: (productId) => API.delete(`/products/${productId}`),

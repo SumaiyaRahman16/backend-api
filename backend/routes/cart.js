@@ -3,6 +3,7 @@ const { verifyToken, verifyTokenAndAuthorization ,verifyTokenAndAdmin} = require
 const CryptoJS = require("crypto-js");
 const User = require('../models/User');
 const Cart = require('../models/Cart');
+const Product = require('../models/Product');
 
 
 // CREATE CART
@@ -52,7 +53,62 @@ router.get("/:userid", verifyToken, async (req, res) => {
         if (!cart) {
             return res.status(404).json({ message: "Cart not found" });
         }
-        res.status(200).json(cart);
+
+        // Populate product information for each cart item
+        const populatedProducts = await Promise.all(
+            cart.products.map(async (item) => {
+                try {
+                    const product = await Product.findById(item.productId);
+                    if (product) {
+                        return {
+                            productId: item.productId,
+                            title: product.title,
+                            price: product.price,
+                            quantity: item.quantity,
+                            image: product.image,
+                            language: product.language,
+                            description: product.description
+                        };
+                    } else {
+                        // If product not found, return basic info
+                        console.warn(`Product ${item.productId} not found`);
+                        return {
+                            productId: item.productId,
+                            title: "Product Not Found",
+                            price: 0,
+                            quantity: item.quantity,
+                            image: "",
+                            language: "unknown",
+                            description: "This product may have been deleted"
+                        };
+                    }
+                } catch (error) {
+                    console.error(`Error fetching product ${item.productId}:`, error);
+                    return {
+                        productId: item.productId,
+                        title: "Error Loading Product",
+                        price: 0,
+                        quantity: item.quantity,
+                        image: "",
+                        language: "unknown",
+                        description: "Error loading product details"
+                    };
+                }
+            })
+        );
+
+        // Calculate the correct total amount
+        const totalAmount = populatedProducts.reduce((sum, item) => {
+            return sum + (item.price * item.quantity);
+        }, 0);
+
+        const populatedCart = {
+            ...cart.toObject(),
+            products: populatedProducts,
+            totalAmount: totalAmount
+        };
+
+        res.status(200).json(populatedCart);
     } catch (err) {
         console.error("Get cart error:", err);
         res.status(500).json({ message: "Failed to get cart", error: err.message });
@@ -66,7 +122,61 @@ router.get("/find/:userid", verifyToken, async (req, res) => {
         if (!cart) {
             return res.status(404).json({ message: "Cart not found" });
         }
-        res.status(200).json(cart);
+
+        // Populate product information for each cart item
+        const populatedProducts = await Promise.all(
+            cart.products.map(async (item) => {
+                try {
+                    const product = await Product.findById(item.productId);
+                    if (product) {
+                        return {
+                            productId: item.productId,
+                            title: product.title,
+                            price: product.price,
+                            quantity: item.quantity,
+                            image: product.image,
+                            language: product.language,
+                            description: product.description
+                        };
+                    } else {
+                        console.warn(`Product ${item.productId} not found`);
+                        return {
+                            productId: item.productId,
+                            title: "Product Not Found",
+                            price: 0,
+                            quantity: item.quantity,
+                            image: "",
+                            language: "unknown",
+                            description: "This product may have been deleted"
+                        };
+                    }
+                } catch (error) {
+                    console.error(`Error fetching product ${item.productId}:`, error);
+                    return {
+                        productId: item.productId,
+                        title: "Error Loading Product",
+                        price: 0,
+                        quantity: item.quantity,
+                        image: "",
+                        language: "unknown",
+                        description: "Error loading product details"
+                    };
+                }
+            })
+        );
+
+        // Calculate the correct total amount
+        const totalAmount = populatedProducts.reduce((sum, item) => {
+            return sum + (item.price * item.quantity);
+        }, 0);
+
+        const populatedCart = {
+            ...cart.toObject(),
+            products: populatedProducts,
+            totalAmount: totalAmount
+        };
+
+        res.status(200).json(populatedCart);
     } catch (err) {
         console.error("Find cart error:", err);
         res.status(500).json({ message: "Failed to find cart", error: err.message });
