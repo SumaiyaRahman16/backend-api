@@ -1,13 +1,15 @@
-MERN Stack E-Commerce & Stripe Integration
-This project is a scalable REST API and a React-based frontend built as part of a technical assessment. It features a complete user authentication system, product management, and a secure checkout flow using the Stripe API.
+DevSnippet Marketplace
+DevSnippet is a premium marketplace for developers to discover, preview, and purchase high-quality code snippets. From complex React hooks to optimized backend middlewares, DevSnippet helps engineers save time by providing ready-to-use "Developer Legos."
 
- Features
-Authentication: Secure user registration and login using JWT and Bcrypt for password hashing.
+Tech Stack
+Frontend: React.js, Tailwind CSS (Magic UI for animations), Vite
 
-Product Management: Full CRUD capability for products (Create, Read, Update, Delete).
+Backend: Node.js, Express.js
 
-Secure Payments: Integration with Stripe API to handle test payments securely.
+Database: MongoDB (Mongoose ODM)
 
-Database: MongoDB Atlas integration with Mongoose schemas for Users, Products, and Orders.
+Authentication: JWT (JSON Web Tokens) & Bcrypt
 
-Scalability: Modular backend architecture with separate routes, models, and controllers.
+Payments: Stripe API Integration
+
+Deployment: Render
